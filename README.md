@@ -1,10 +1,12 @@
 # CalculateAreaAndPerimeter!
 // Form View
-![empty-form](https://user-images.githubusercontent.com/82242098/169666516-01f2caf3-cfab-4456-87fc-657e33250193.jpg)
+![empty-form](https://user-images.githubusercontent.com/82242098/169666535-a4711f13-9660-4982-b3a9-66a1c7a66076.jpg)
 
 
 // Selected square area
-(https://user-images.githubusercontent.com/82242098/169666476-ec2615e5-db3a-43aa-a5df-9f8a4c2dc200.jpg)
+![karenin-alani](https://user-images.githubusercontent.com/82242098/169666543-813a2349-09ed-43f2-8f0c-a7340f2a5cf5.jpg)
+
 
 // Selected rectangle perimeter
-(https://user-images.githubusercontent.com/82242098/169666497-8d4df52a-62c7-4dd4-8a17-5b36cf4fbd21.jpg)
+![dikdortgen-cevresi](https://user-images.githubusercontent.com/82242098/169666547-e0817b82-dc95-4950-96b8-fff99efb4552.jpg)
+
