@@ -1,6 +1,5 @@
 # CalculateAreaAndPerimeter!
-// Form View
-![empty-form](https://user-images.githubusercontent.com/82242098/169666535-a4711f13-9660-4982-b3a9-66a1c7a66076.jpg)
+//Form View ![empty-form](https://user-images.githubusercontent.com/82242098/169666535-a4711f13-9660-4982-b3a9-66a1c7a66076.jpg)
 
 
 // Selected square area
