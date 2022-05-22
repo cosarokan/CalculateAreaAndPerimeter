@@ -47,8 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractEntities\Shape.cs" />
+    <Compile Include="Entities\Circle.cs" />
     <Compile Include="Entities\Rectangle.cs" />
     <Compile Include="Entities\Square.cs" />
+    <Compile Include="Entities\Triangle.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,7 +58,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IAreaHave.cs" />
-    <Compile Include="Interfaces\IEnvironmentHave.cs" />
+    <Compile Include="Interfaces\IPerimeterHave.cs" />
     <Compile Include="Interfaces\IDiagonal.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

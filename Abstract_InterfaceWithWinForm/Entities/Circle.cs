@@ -1,24 +1,21 @@
 ﻿using Abstract_InterfaceWithWinForm.AbstractEntities;
 using Abstract_InterfaceWithWinForm.Interfaces;
+using System;
 
 namespace Abstract_InterfaceWithWinForm.Entities
 {
-    public class Square : Shape, IDiagonal, IAreaHave, IPerimeterHave
+    public class Circle : Shape, IAreaHave, IPerimeterHave
     {
-        public int Side { get; set; }
-        public double CalculateDiagonal()
-        {
-            throw new System.NotImplementedException();
-        }
+        public double PiNumber { get; set; } = 3.14;
+        public double Radius { get; set; }
         public double CalculateArea()
         {
             try
             {
-                return Side * Side;
+                return (PiNumber * Math.Pow(Radius, 2));
             }
-            catch (System.Exception)
+            catch (Exception)
             {
-
                 throw;
             }
         }
@@ -26,11 +23,10 @@ namespace Abstract_InterfaceWithWinForm.Entities
         {
             try
             {
-                return 4 * Side;
+                return (2 * PiNumber * Radius);
             }
-            catch (System.Exception)
+            catch (Exception)
             {
-
                 throw;
             }
         }

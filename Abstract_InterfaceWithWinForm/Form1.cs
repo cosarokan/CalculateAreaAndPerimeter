@@ -10,53 +10,55 @@ namespace Abstract_InterfaceWithWinForm
         {
             InitializeComponent();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-            // radio buttonlar tikli olmamalı.   
-
             groupBoxOperations.Enabled = false;
-        }
-
+            StartCase();
+        }    
         private void cBoxSquare_CheckedChanged(object sender, EventArgs e)
         {
-            // kare tiklendiği zaman dikdörtgenin tik kalksın!
-
             if (cBoxSquare.CheckState == CheckState.Checked)
             {
-                cBoxRectangle.Checked = false;
-                groupBoxOperations.Enabled = true;
-                lblSecondSide.Visible = false;
-                txtSecondSide.Visible = false;
-                lblFirstSide.Visible = true;
-                lblFirstSide.Text = "Side";
-                txtFirstSide.Visible = true;
+                SquareOperations();
             }
-            else if (cBoxSquare.Checked == false && !cBoxRectangle.Checked)
+            else if (!cBoxSquare.Checked && !cBoxRectangle.Checked && !cBoxTriangle.Checked && !cBoxCircle.Checked)
             {
                 groupBoxOperations.Enabled = false;
             }
         }
-
+        private void cBoxTriangle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cBoxTriangle.CheckState == CheckState.Checked)
+            {
+                TriangleOperations();
+            }
+            else if (!cBoxSquare.Checked && !cBoxRectangle.Checked && !cBoxTriangle.Checked && !cBoxCircle.Checked)
+            {
+                groupBoxOperations.Enabled = false;
+            }
+        }
         private void cBoxRectangle_CheckedChanged(object sender, EventArgs e)
         {
-            // dikdörtgen tiklendiği zaman karenin tik kalksın!
-
             if (cBoxRectangle.CheckState == CheckState.Checked)
             {
-                cBoxSquare.Checked = false; // kare tik event'i kaldırıldı.
-                groupBoxOperations.Enabled = true; // işlem kısmı açıldı
-                lblFirstSide.Text = "Short Side";
-                lblSecondSide.Visible = true; // ikinci kenar görünüyor
-                txtSecondSide.Visible = true; // ikinci kenar text box görünüyor
-                lblSecondSide.Text = "Long Side";
+                RectangleOperations();
             }
-            else if (cBoxSquare.Checked == false && !cBoxRectangle.Checked)
+            else if (!cBoxSquare.Checked && !cBoxRectangle.Checked && !cBoxTriangle.Checked && !cBoxCircle.Checked)
             {
                 groupBoxOperations.Enabled = false;
             }
         }
-
+        private void cBoxCircle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cBoxCircle.CheckState == CheckState.Checked)
+            {
+                CircleOperations();
+            }
+            else if (!cBoxCircle.Checked && !cBoxSquare.Checked && !cBoxRectangle.Checked && !cBoxTriangle.Checked)
+            {
+                groupBoxOperations.Enabled = false;
+            }
+        }
         private void btnCalculateArea_Click(object sender, EventArgs e)
         {
             if (cBoxRectangle.Checked)
@@ -82,8 +84,28 @@ namespace Abstract_InterfaceWithWinForm
                 MessageBox.Show($"{square.ShapeName}'s square area: {result}");
                 Clear();
             }
+            else if (cBoxTriangle.Checked)
+            {
+                Triangle triangle = new Triangle()
+                {
+                    FirstSide = Convert.ToInt32(txtFirstSide.Text),
+                    Height = Convert.ToInt32(txtHeight.Text),
+                };
+                double result = triangle.CalculateArea();
+                MessageBox.Show($"{triangle.ShapeName}'s triangle area: {result}");
+                Clear();
+            }
+            else if (cBoxCircle.Checked)
+            {
+                Circle circle = new Circle()
+                {
+                    Radius = Convert.ToInt32(txtRadius.Text)
+                };
+                double result = circle.CalculateArea();
+                MessageBox.Show($"{circle.ShapeName}'s circle area: {result}");
+                Clear();
+            }
         }
-
         private void btnCalculateEnvironment_Click(object sender, EventArgs e)
         {
             if (cBoxRectangle.Checked)
@@ -109,15 +131,177 @@ namespace Abstract_InterfaceWithWinForm
                 MessageBox.Show($"{square.ShapeName}'s square perimeter: {result}");
                 Clear();
             }
+            else if (cBoxTriangle.Checked)
+            {
+                Triangle triangle = new Triangle()
+                {
+                    ShapeName = txtShapeName.Text,
+                    FirstSide = Convert.ToInt32(txtFirstSide.Text),
+                    SecondSide = Convert.ToInt32(txtSecondSide.Text),
+                    ThirdSide = Convert.ToInt32(txtThirdSide.Text)
+                };
+                double result = triangle.CalculatePerimeter();
+                MessageBox.Show($"{triangle.ShapeName}'s triangle perimeter: {result}");
+                Clear();
+            }
+            else if (cBoxCircle.Checked)
+            {
+                Circle circle = new Circle()
+                {
+                    Radius = Convert.ToInt32(txtRadius.Text)
+                };
+                double result = circle.CalculatePerimeter();
+                MessageBox.Show($"{circle.ShapeName}'s circle perimeter: {result}");
+                Clear();
+            }
         }
+
+        /// <summary>
+        /// square operations (visible, enable vs.)
+        /// </summary>
+        void SquareOperations()
+        {
+            cBoxRectangle.Checked = false;
+            cBoxTriangle.Checked = false;
+            cBoxCircle.Checked = false;
+            groupBoxOperations.Enabled = true;
+
+            lblFirstSide.Text = "Side";
+            lblFirstSide.Visible = true;
+            txtFirstSide.Visible = true;
+
+            lblSecondSide.Visible = false;
+            txtSecondSide.Visible = false;
+
+            lblThirdSide.Visible = false;
+            txtThirdSide.Visible = false;
+
+            lblHeight.Visible = false;
+            txtHeight.Visible = false;
+
+            lblSpecialForTriangleHeight.Visible = false;
+            lblTriangleFloorLength.Visible = false;
+
+            lblRadius.Visible = false;
+            txtRadius.Visible = false;
+        }
+
+        /// <summary>
+        /// rectangle operations (visibile, enable vs.)
+        /// </summary>
+        void RectangleOperations()
+        {
+            cBoxSquare.Checked = false; 
+            cBoxTriangle.Checked = false; 
+            cBoxCircle.Checked = false;
+            groupBoxOperations.Enabled = true; 
+
+            lblFirstSide.Text = "Short Side";
+
+            lblSecondSide.Text = "Long Side";
+            lblSecondSide.Visible = true; 
+            txtSecondSide.Visible = true; 
+
+            lblThirdSide.Visible = false;
+            txtThirdSide.Visible = false;
+
+            lblHeight.Visible = false;
+            txtHeight.Visible = false;
+
+            lblSpecialForTriangleHeight.Visible = false;
+            lblTriangleFloorLength.Visible = false;
+
+            lblRadius.Visible = false;
+            txtRadius.Visible = false;
+
+        }
+
+        /// <summary>
+        /// triangle operations (visible, enable vs.)
+        /// </summary>
+        void TriangleOperations()
+        {
+            cBoxRectangle.Checked = false;
+            cBoxSquare.Checked = false;
+            cBoxCircle.Checked = false;
+            groupBoxOperations.Enabled = true;
+
+            lblFirstSide.Visible = true;
+            lblFirstSide.Text = "Side";
+
+            lblSecondSide.Visible = true;
+            lblSecondSide.Text = "Side";
+
+            lblThirdSide.Visible = true;
+            lblThirdSide.Text = "Side";
+
+            txtFirstSide.Visible = true;
+            txtSecondSide.Visible = true;
+            txtThirdSide.Visible = true;
+
+            lblHeight.Visible = true;
+            txtHeight.Visible = true;
+
+            lblSpecialForTriangleHeight.Visible = true;
+            lblTriangleFloorLength.Visible = true;
+
+            lblRadius.Visible = false;
+            txtRadius.Visible = false;
+        }
+
+        /// <summary>
+        /// circle operations (visible, enable vs.)
+        /// </summary>
+        void CircleOperations()
+        {
+            cBoxSquare.Checked = false;
+            cBoxTriangle.Checked = false;
+            cBoxRectangle.Checked = false;
+            groupBoxOperations.Enabled = true;
+
+            lblFirstSide.Visible = false;
+            txtFirstSide.Visible = false;
+
+            lblSecondSide.Visible = false;
+            txtSecondSide.Visible = false;
+
+            lblThirdSide.Visible = false;
+            txtThirdSide.Visible = false;
+
+            lblHeight.Visible = false;
+            txtHeight.Visible = false;
+
+            lblRadius.Visible = true;
+            txtRadius.Visible = true;
+
+            lblSpecialForTriangleHeight.Visible = false;
+            lblTriangleFloorLength.Visible = false;
+        }
+
+        void StartCase()
+        {
+            lblSpecialForTriangleHeight.Visible = false;
+            lblTriangleFloorLength.Visible = false;
+        }
+
+        /// <summary>
+        /// Clear the text boxes
+        /// </summary>
         void Clear()
         {
             txtFirstSide.Clear();
             txtSecondSide.Clear();
+            txtThirdSide.Clear();
             txtShapeName.Clear();
+            txtHeight.Clear();
+            txtRadius.Clear();
             cBoxSquare.Checked = false;
             cBoxRectangle.Checked = false;
+            cBoxTriangle.Checked = false;
+            cBoxCircle.Checked = false;
             groupBoxOperations.Enabled = false;
         }
+
+
     }
 }

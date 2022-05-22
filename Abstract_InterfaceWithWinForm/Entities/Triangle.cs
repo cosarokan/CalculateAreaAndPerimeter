@@ -3,18 +3,18 @@ using Abstract_InterfaceWithWinForm.Interfaces;
 
 namespace Abstract_InterfaceWithWinForm.Entities
 {
-    public class Square : Shape, IDiagonal, IAreaHave, IPerimeterHave
+    public class Triangle : Shape, IAreaHave, IPerimeterHave, IDiagonal
     {
-        public int Side { get; set; }
-        public double CalculateDiagonal()
-        {
-            throw new System.NotImplementedException();
-        }
+        public int FirstSide { get; set; }
+        public int SecondSide { get; set; }
+        public int ThirdSide { get; set; }
+        public int Height { get; set; }
+
         public double CalculateArea()
         {
             try
             {
-                return Side * Side;
+                return (FirstSide * Height) / 2;
             }
             catch (System.Exception)
             {
@@ -22,11 +22,17 @@ namespace Abstract_InterfaceWithWinForm.Entities
                 throw;
             }
         }
+
+        public double CalculateDiagonal()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public double CalculatePerimeter()
         {
             try
             {
-                return 4 * Side;
+                return FirstSide + SecondSide + ThirdSide;
             }
             catch (System.Exception)
             {

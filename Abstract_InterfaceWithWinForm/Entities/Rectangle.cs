@@ -3,7 +3,7 @@ using Abstract_InterfaceWithWinForm.Interfaces;
 
 namespace Abstract_InterfaceWithWinForm.Entities
 {
-    public class Rectangle : Shape, IDiagonal, IAreaHave, IPerimeterHave
+    public class Rectangle : Shape, IAreaHave, IPerimeterHave
     {
         // bir class birden fazla class'tan kalıtım alamaz!
         // bir class birden fazla interface'ten kalıtım alabilir!
@@ -23,12 +23,6 @@ namespace Abstract_InterfaceWithWinForm.Entities
                 throw;
             }
         }
-
-        public double CalculateDiagonal()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public double CalculatePerimeter()
         {
             try

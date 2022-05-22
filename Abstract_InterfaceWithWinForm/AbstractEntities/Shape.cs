@@ -4,13 +4,6 @@
     {
         // abstract soyut demektir.
         // abstract class'lar new ile üretilemeyen soyut yapılardır.
-
         public string ShapeName { get; set; }
-
-
-        public void Print()
-        {
-            // bu metodun bir gövdesi
-        }
     }
 }
